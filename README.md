@@ -7,8 +7,7 @@ I. Постановка задачи
 Примеры:  
 1.	Complex Perem = new Complex (2, 0);  
 2.	Complex Perem = new Complex (3.4, -5.7f);   
-3.	Complex Perem = new Complex (1.23e-4f, 1.23e-4f);    	
- 
+3.	Complex Perem = new Complex (1.23e-4f, 1.23e-4f);  
 II. Разработка грамматики  
 Определим грамматику объявления и инициализации комплексного числа на языке C# G[<DEF>] в нотации Хомского с продукциями P:  
 1.	<DEF> → ‘Complex’•IDENT 
