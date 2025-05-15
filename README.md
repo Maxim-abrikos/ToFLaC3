@@ -1,6 +1,6 @@
 # ToFLaC3
-Третья лабораторная по теории формальных языков и компиляторов
-I. Постановка задачи
+Третья лабораторная по теории формальных языков и компиляторов  
+I. Постановка задачи  
 В C# для объявления и инициализации комплексного числа используется структура System.Numerics.Complex. Эта структура позволяет представить комплексное число как пару чисел с плавающей точкой, представляющих действительную и мнимую части. После объявления переменной типа Complex, ей можно присвоить значение, представляющее комплексное число, которое в дальнейшем не будет изменяться (хотя сама переменная может быть переназначена).
 Формат записи: “Complex $name = new Complex ($value, $value);”
 Параметр $name передает имя переменной, а параметр $value - ее значения. Значение может быть целым (int), дробным (float, double, exp).
@@ -9,31 +9,31 @@ I. Постановка задачи
 2.	Complex Perem = new Complex (3.4, -5.7f);   
 3.	Complex Perem = new Complex (1.23e-4f, 1.23e-4f);    	
  
-II. Разработка грамматики
-Определим грамматику объявления и инициализации комплексного числа на языке C# G[<DEF>] в нотации Хомского с продукциями P:
-1.	<DEF> → ‘Complex’•IDENT
-2.	IDENT → letter•IDREM
-3.	IDREM → letter • IDREM | digit• IDREM| _IDREM| ‘=’NEW
-4.	NEW → ‘new’•TYPE
-5.	TYPE → ‘Complex’•CONSTRUCTOR
-6.	CONSTRUCTOR → ‘(’ •SIGN
-7.	SIGN → ‘-’ •NUMBERS | NUMBERS
-8.	NUMBERS → digit • NUM
-9.	NUM → digit • REAL | ‘.’REAL | ‘,’ IMAGINARY
-10.	REAL → digit • REALREM
-11.	REALREM → digit•REALREM | ‘,’IMAGINARYSIGN
-12.	IMAGINARYSIGN → IMAGINARY | ‘-’ • IMAGINARY
-13.	IMAGINARY → digit • INTIMAGINARY
-14.	INTIMAGINARY → digit • INTIMAGINARY| ‘.’INTIMAGINARYREM | ‘)’ •END
-15.	INTIMAGINARYREM → digit • INTIMAGINARYREM | ‘)’ •END
-16.	END → ‘;’
-17.	<letter> → "a" | "b" | "c" | ... | "z" | "A" | "B" | "C" | ... | "Z" |
-<digit> → "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+II. Разработка грамматики  
+Определим грамматику объявления и инициализации комплексного числа на языке C# G[<DEF>] в нотации Хомского с продукциями P:  
+1.	<DEF> → ‘Complex’•IDENT 
+2.	IDENT → letter•IDREM  
+3.	IDREM → letter • IDREM | digit• IDREM| _IDREM| ‘=’NEW  
+4.	NEW → ‘new’•TYPE  
+5.	TYPE → ‘Complex’•CONSTRUCTOR  
+6.	CONSTRUCTOR → ‘(’ •SIGN  
+7.	SIGN → ‘-’ •NUMBERS | NUMBERS  
+8.	NUMBERS → digit • NUM  
+9.	NUM → digit • REAL | ‘.’REAL | ‘,’ IMAGINARY  
+10.	REAL → digit • REALREM  
+11.	REALREM → digit•REALREM | ‘,’IMAGINARYSIGN  
+12.	IMAGINARYSIGN → IMAGINARY | ‘-’ • IMAGINARY  
+13.	IMAGINARY → digit • INTIMAGINARY  
+14.	INTIMAGINARY → digit • INTIMAGINARY| ‘.’INTIMAGINARYREM | ‘)’ •END  
+15.	INTIMAGINARYREM → digit • INTIMAGINARYREM | ‘)’ •END  
+16.	END → ‘;’  
+17.	<letter> → "a" | "b" | "c" | ... | "z" | "A" | "B" | "C" | ... | "Z" |  
+<digit> → "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"    
 Следуя введенному формальному определению грамматики, представим G[<DEF>] ее составляющими:
 •	Z = G[<DEF >] ;
 •	VT = {a, b, c, ..., z, A, B, C, ..., Z, +, -, ;, ,, .,0, 1, 2, ..., 9};
 •	VN = {<DEF>, <IDENT>, <IDREM>, <NEW>, <TYPE>, <CONSTRUCTOR>, <SIGN>, <NUMBERS>,<NUM>, <REAL>, <REALREM>, < IMAGINARYSIGN >, <IMAGINARY>, <INTIMAGINARY>, <IMAGINARYREM>, <END>}
-III. Классификация грамматики
+III. Классификация грамматики  
 Н. Хомский выделил четыре класса грамматик: грамматики нулевого типа, контекстно-зависимые, контекстно-свободные и автоматные грамматики. Вид грамматики определяется исходя из формы записи ее правил.
 Грамматики нулевого типа имеют правила следующего вида:
 α→β,
@@ -47,9 +47,9 @@ A → a,
 Автоматные или регулярные грамматики имеют самые строгие ограничения на форму записи правил:
 A → aB | a | ε,
 где a∈VТ, A∈VN и B∈VB.
-Согласно приведённым выше правилам, грамматика G[<DEF>] является автоматной грамматикой, т.к. здесь в левой части правил находится только по одному нетерминальному символу, а в правой – либо один терминальный и один нетерминальный символ, либо один терминальный символ.
+Согласно приведённым выше правилам, грамматика G[<DEF>] является автоматной грамматикой, т.к. здесь в левой части правил находится только по одному нетерминальному символу, а в правой – либо один терминальный и один нетерминальный символ, либо один терминальный символ.  
  
-IV. Метод анализа
+IV. Метод анализа  
 Для анализа грамматики было выбрано её представление в виде графа конечного автомата (рис. 1), где состояние 1 – является начальным, а состояние 15 – конечным.  
  
 ![image](https://github.com/user-attachments/assets/dea571b8-7d57-4685-b6d0-be95254b4821)  
