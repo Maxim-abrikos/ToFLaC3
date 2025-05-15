@@ -5,9 +5,9 @@ I. Постановка задачи
 Формат записи: “Complex $name = new Complex ($value, $value);”
 Параметр $name передает имя переменной, а параметр $value - ее значения. Значение может быть целым (int), дробным (float, double, exp).
 Примеры:  
-1.	Complex Perem = new Complex (2, 0);  
-2.	Complex Perem = new Complex (3.4, -5.7f);   
-3.	Complex Perem = new Complex (1.23e-4f, 1.23e-4f);  
+*	Complex Perem = new Complex (2, 0);
+*	Complex Perem = new Complex (3.4, -5.7f);
+*	Complex Perem = new Complex (1.23e-4f, 1.23e-4f);  
 II. Разработка грамматики  
 Определим грамматику объявления и инициализации комплексного числа на языке C# G[<DEF>] в нотации Хомского с продукциями P:  
 1.	<DEF> → ‘Complex’•IDENT 
